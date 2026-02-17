@@ -1,0 +1,49 @@
+package com.br.minibanco.domain.user;
+
+
+import com.br.minibanco.dtos.UserDTO;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.math.BigDecimal;
+
+@Entity(name = "users")
+@Table(name = "users")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
+public class User {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
+  private String firstName;
+  private String lastName;
+
+  @Column(unique = true)
+  private String document;
+
+  @Column(unique = true)
+  private String email;
+
+  private String password;
+
+  private BigDecimal balance;
+
+  @Enumerated(EnumType.STRING)
+  private UserType userType;
+
+
+  public User(UserDTO data) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.document = document;
+    this.email = email;
+    this.password = password;
+    this.balance = balance;
+    this.userType = userType;
+  }
+}
